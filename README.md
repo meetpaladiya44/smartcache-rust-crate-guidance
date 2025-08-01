@@ -31,11 +31,19 @@ cargo add stylus-cache-sdk
 
 Then add the following code in your `lib.rs` file:
 
+First, add the import statement at the top of your `lib.rs` file (similar to import syntax in Node.js):
+
 ```rust
 use stylus_cache_sdk::{is_contract_cacheable};
+```
 
+Then, in your `Counter` implementation block, add the `is_cacheable` function alongside your existing functions:
+
+```rust
 #[public]
 impl Counter {
+    // ... your existing functions will be here ...
+    
     pub fn is_cacheable(&self) -> bool {
         is_contract_cacheable()
     }
