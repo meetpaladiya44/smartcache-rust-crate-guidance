@@ -2,35 +2,27 @@
 
 ## Setup Instructions
 
-### 1. Repository Setup
+### 1. Create New Project Folder
 
-The first step is to get the repository code that you have already submitted for the speedrun challenges. 
+Create a new folder and open it in your Cursor or VSCode IDE.
 
-- **If you have not deleted that repo**: Open it in your Cursor or VSCode IDE
-- **If you have deleted the repo**: Clone your published repository from your GitHub that you submitted for the speedrun challenges
+### 2. Initialize Smart Cache Project
 
-### 2. Directory Navigation
+**Important Note**: All commands including cd commands must be run in WSL (Windows Subsystem for Linux) only. If you're on Windows, make sure to use WSL terminal for all operations.
 
-After you have the code for that challenge open in your IDE, open the terminal and navigate to the appropriate directory:
-
-#### For Counter Project:
+Open the WSL terminal and run:
 ```bash
-cd speedrun_stylus/packages/stylus-demo
+cargo stylus new smartcache
 ```
 
-#### For NFT Project:
+Then navigate into the project directory:
 ```bash
-cd speedrun_stylus/packages/cargo-stylus/nft
+cd smartcache
 ```
-
-#### For Vending Machine Project:
-```bash
-cd speedrun_stylus/packages/cargo-stylus/vending_machine
-```
-
-**Note**: In short, you have to find `rust-toolchain.toml` and `cd` into the folder structure until you get the `rust-toolchain.toml` file.
 
 ### 3. Install Dependencies and Add Cache Functionality
+
+**Important Note**: All cargo commands must be run in WSL (Windows Subsystem for Linux) only. If you're on Windows, make sure to use WSL terminal for all cargo operations.
 
 Install the stylus cache SDK:
 ```bash
@@ -74,11 +66,25 @@ rustup target add wasm32-unknown-unknown
 
 Then run the `cargo stylus deploy` command again.
 
-### 6. Commit and Submit
+**Important**: If you see output like this:
+```
+deployed code at address: <add>
+deployment tx hash: <tx_hash>
+wasm already activated!
+```
 
-Commit your changes, push them to your repository, and make sure to submit that same repository again on [https://www.speedrunstylus.com/](https://www.speedrunstylus.com/) for the challenge you were working on (e.g., if the `lib.rs` was for counter contract, then submit your modified code for counter repo again in the speedrun).
+It means the transaction hash is not unique and must be unique to activate the program. In this case, you need to modify the function name again (change any function name to something unique) and try to deploy the contract again.
 
-### 7. Initialize Smart Cache
+**Expected Output**: When successful, you should see output like this:
+```
+deployed code at address: <contract_address>
+deployment tx hash: <some_hash>
+contract activated and ready onchain with tx hash: 0x737795c1545039fe0477cbd40869318662e6c26c029453c9e687c4781fa54b71
+```
+
+### 6. Initialize Smart Cache
+
+**Important Note**: From step 6 onwards, make sure to run all commands in a new terminal using PowerShell or bash (not WSL).
 
 In that same challenge's code in your IDE, open a new terminal and run:
 
@@ -98,13 +104,13 @@ smart-cache init
 
 This will create a new `smartcache.toml` file.
 
-### 8. Configure Smart Cache
+### 7. Configure Smart Cache
 
 In the `smart-cache.toml` file, add:
 - The contract address which you just deployed on Arbitrum Sepolia
 - The deployed address of the private key which you used to deploy the contract on Arbitrum Sepolia
 
-### 9. Add Contract to Cache
+### 8. Add Contract to Cache
 
 Run the command:
 ```bash
@@ -112,7 +118,3 @@ smart-cache add
 ```
 
 This command will be running in your terminal and the contract will be cached to optimize gas usage.
-
-### 10. Final Submission
-
-Push your changed code to your GitHub repository again and then submit that repository again in the speedrun challenges.
