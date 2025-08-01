@@ -89,6 +89,10 @@ contract activated and ready onchain with tx hash: 0x737795c1545039fe0477cbd4086
 In that same challenge's code in your IDE, open a new terminal and run:
 
 ```bash
+cd smartcache
+```
+
+```bash
 npm unlink -g smart-cache-cli
 ```
 
@@ -118,3 +122,19 @@ smart-cache add
 ```
 
 This command will be running in your terminal and the contract will be cached to optimize gas usage.
+
+### 9. Final Repository Setup
+
+First, delete the `.git` folder from the smartcache directory:
+
+**For PowerShell (Windows):**
+```powershell
+Remove-Item -Recurse -Force .git
+```
+
+**For Bash/Linux/WSL:**
+```bash
+rm -rf .git
+```
+
+Then create your repository and push all your code to that repository. This is the final step to complete your smart cache setup.
